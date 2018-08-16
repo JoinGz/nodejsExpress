@@ -14,7 +14,10 @@ var routes = require('./routes')
 var app = express()
 
 // 连接到你MongoDB服务器的test数据库
-mongoose.connect('mongodb://localhost:27017/test')
+mongoose.connect('mongodb://localhost:27017/test',(err)=>{
+  console.log(err);
+  
+})
 app.set('port', process.env.PORT || 3000)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
