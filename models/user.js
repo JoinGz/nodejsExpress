@@ -4,7 +4,7 @@ let bcrypt = require("bcrypt-nodejs");
 let SALT_FACTOR = 10;
 // 定义数据库类型(模型骨架，表结构)
 let userSchema = mongoose.Schema({
-  usernam:{type:String,require:true,unique:true},
+  username:{type:String,require:true,unique:true},
   password:{type:String,require:true},
   createdAt:{type:Date, default: Date.now},
   displayName:String,
