@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
-  123
+
 </body>
+<script>
+  setInterval(() => {
+    var json1 = {}
+    let http = new XMLHttpRequest()
+    http.open('get', '/go')
+    http.send(null)
+    http.onreadystatechange = () => {
+      if (http.readyState == 4 && http.status == 200) {
+        // 打印响应内容
+        json1 = JSON.parse(http.responseText)
+        json()
+      }
+    }
+
+    function json(params) {
+      document.body.innerHTML = `当前在线 ${json1.online} 人；
+      id为${json1.name}的连击数为：${json1.plus}
+      `
+    }
+  }, 500)
+</script>
+
 </html>

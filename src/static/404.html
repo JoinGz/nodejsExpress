@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    button {
+      margin: 1rem;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      font-size: 1rem;
+    }
+  </style>
 </head>
+
 <body style="padding:40px">
-  <h1>
-    not Found! 
-  </h1>
-  <h4 style="text-align: right;margin-top:40px"> enheng?!</h4>
+  <button>+1</button>
+  <div class="hezi">
+
+  </div>
 </body>
+<script>
+  document.querySelector('button').onclick = () => {
+    let http = new XMLHttpRequest()
+    http.open('post', '/plus')
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(null)
+    http.onreadystatechange = () => {
+      if (http.readyState == 4 && http.status == 200) {
+        document.querySelector('.hezi').innerHTML = http.responseText
+        console.log(http.responseText);
+        
+      }
+    }
+  }
+</script>
+
 </html>
