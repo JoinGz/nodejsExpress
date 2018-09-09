@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <form action="/up" enctype="multipart/form-data" method="POST"> -->
+  <input type="file" id='file' name="gz">
+  <!-- <input type="submit" value="提交"> -->
+  <!-- </form> -->
+  <button>
+    提交的嘛
+  </button>
+</body>
+<script>
+  let file = document.querySelector("#file")
+  file.onchange = () => {
+    console.log(file.files[0])
+  }
+  let button = document.querySelector("button")
+  button.onclick = () => {
+    let http = new XMLHttpRequest()
+    http.open('post','./up')
+    let data = new FormData()
+    data.append('name','{gz:1,age:2}')
+    
+    data.append('file',file.files[0])
+    // http.setRequestHeader("Content-type","multipart/form-data;");
+    http.send(data)
+  }
+</script>
+
+</html>
