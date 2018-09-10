@@ -41,11 +41,13 @@ passport.use("login", new LocalStrategy(function(username, password, done) {
 module.exports = function() {
 // 序列化
 // serializeUser 用户登录验证成功以后将会把用户的数据存储到 session 中
+// 向session增加了一个 字段；user(这个键应该是默认的) 值为传出入的user._id
     passport.serializeUser(function(user, done) {
         done(null, user._id);
     });
 // 反序列化
 // deserializeUser 每次请求的时将从 session 中读取用户对象，并将其封装到 req.user
+// 默认读取user这个键，然后取到id
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
             done(err, user);

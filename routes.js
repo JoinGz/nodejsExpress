@@ -5,6 +5,8 @@ let router = express.Router()
 router.use((requset, response, next)=>{
   response.locals.currentUser = requset.user;
   // 传了errors,locals出去
+  // console.log(requset.flash());
+  
   response.locals.errors = requset.flash("error");
   response.locals.infos = requset.flash("info");
   next()
@@ -37,6 +39,8 @@ router.get("/users/:username", function(req, res, next) {
     });
 });
 router.get('/',(request, response,next)=>{
+  console.log(request.session);
+  
   User.find({},{_id:0,password:0},{sort:{createdAt:-1}},(err, users)=>{
     if(err){
       console.log(err);

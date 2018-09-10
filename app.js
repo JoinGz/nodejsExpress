@@ -34,13 +34,16 @@ app.use(
     //而将 resave 设置为 true 则保证了即使 session 没有被修改也依然会被刷新。
     secret: 'TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    rolling: true, // 使cookie和session保存时间顺延
+    cookie: { maxAge: 10 * 1000 }
   })
 )
+setUpPassport();
 // 初始化调用 passport
 app.use(passport.initialize());
+// session持久化
 app.use(passport.session());
-setUpPassport();
 app.use(flash())
 app.use(routes)
 app.listen(app.get('port'), function() {
